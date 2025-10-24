@@ -1,8 +1,8 @@
 const config = {
   db: {
     host: "localhost",
-    user: "root",
-    password: "1458!Ibo",
+    user: "*****",
+    password: "********",
     database: "blogApp",
   },
 };
