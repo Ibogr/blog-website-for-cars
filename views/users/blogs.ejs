@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Include shared head partial (meta tags, CSS, JS links) -->
+  <%- include('../partials/head') %>
+</head>
+
+<body>
+  <!-- Include shared navigation bar partial -->
+  <%- include('../partials/nav') %>
+
+  <div class="container mt-4">
+    <!-- Page title and header -->
+    <h1><%= title %></h1>
+    <h2>Blogs Page</h2>
+    <p>Here you can read the details of a blog post.</p>
+
+    <div class="row mt-4">
+      <!-- LEFT COLUMN: Categories Menu -->
+      <div class="col-md-3">
+        <%- include('../partials/category-menu', { categories, selectedCategory }) %>
+      </div>
+
+      <!-- RIGHT COLUMN: Blog Cards -->
+      <div class="col-md-9">
+        <div class="row">
+          <% if (blogs && blogs.length > 0) { %>
+            <!-- Loop through blogs to display each as a card -->
+            <% blogs.forEach(function(blog) { %>
+              <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                  <!-- Blog Image -->
+                  <img src="/<%= blog.image %>" class="card-img-top img-fluid" alt="<%= blog.title %>">
+
+                  <div class="card-body">
+                    <!-- Blog Title -->
+                    <h5 class="card-title"><%= blog.title %></h5>
+                    <!-- Blog Brief (truncated for layout) -->
+                    <p class="card-text text-truncate"><%= blog.brief %></p>
+
+                    <!-- Action Buttons -->
+                    <div class="row">
+                      <div class="col-5">
+                        <!-- Read more button -->
+                        <a href="/blogs/<%= blog.blogId %>" class="btn btn-primary p-1">Read More</a>
+                      </div>
+                      <div class="col-7">
+                        <!-- Admin buttons: delete and edit -->
+                        <a href="/blogs/<%= blog.blogId %>" class="btn btn-danger btn-sm">delete</a>
+                        <a href="/blogs/<%= blog.blogId %>" class="btn btn-info btn-sm">edit</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <!-- Message when no blogs exist in the category -->
+            <div class="col-12">
+              <p class="text-muted">No blogs found in this category.</p>
+            </div>
+          <% } %>
+        </div> <!-- row -->
+      </div> <!-- col-md-9 -->
+    </div> <!-- main row -->
+  </div> <!-- container -->
+
+  <!-- Include pagination partial -->
+  <%- include('../partials/pagination') %>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Include shared head partial (meta tags, CSS links, scripts) -->
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+
+    <!-- Include shared navigation bar partial -->
+    <%- include('../partials/nav') %>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Form for creating a new blog post -->
+                <form method="POST" enctype="multipart/form-data">
+                    
+                    <!-- Input: Title -->
+                    <div class="row mb-3">
+                        <label for="baslik" class="col-sm-2 col-form-label">Title:</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="title" id="title" class="form-control">
+                        </div>
+                    </div>
+
+                    <!-- Textarea: Brief -->
+                    <div class="row mb-3">
+                        <label for="brief" class="col-sm-2 col-form-label">Brief:</label>
+                        <div class="col-sm-8">
+                            <textarea name="brief" class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Textarea: Description -->
+                    <div class="row mb-3">
+                        <label for="description" class="col-sm-2 col-form-label">Description:</label>
+                        <div class="col-sm-8">
+                            <textarea name="description" class="form-control" rows="10"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- File Input: Image -->
+                    <div class="row mb-3">
+                        <label for="image" class="col-sm-2 col-form-label">Image:</label>
+                        <div class="col-sm-8">
+                            <input type="file" name="image" class="form-control">
+                        </div>
+                    </div>
+
+                    <!-- Select: Type/Category -->
+                    <div class="row mb-3">
+                        <label for="type" class="col-sm-2 col-form-label">Type:</label>
+                        <div class="col-sm-8">
+                            <select name="type" class="form-select" id="type">
+                                <option value="" selected>seciniz</option>
+                                <% categories.forEach(category => { %>
+                                    <option value="<%= category.name %>">
+                                        <%= category.name %>
+                                    </option>
+                                <% }) %>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Checkboxes: IndexPage & Home -->
+                    <div class="row mb-3">
+                        <div class="col-sm-10 offset-sm-2">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="indexPage" name="indexPage">
+                                <label for="indexPage" class="form-check-label">Blog</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="home" name="home">
+                                <label for="home" class="form-check-label">Home</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="row mb-3">
+                        <div class="col-sm-10 offset-sm-2">
+                            <div class="form-check">
+                                <button type="submit" class="btn btn-primary">kaydet</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Include shared head partial (meta tags, CSS links, scripts) -->
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+    <!-- Include shared navigation bar partial -->
+    <%- include('../partials/nav') %>
+
+    <div class="container ms-auto">
+        <!-- Alert box to confirm deletion of a blog post -->
+        <div class="alert alert-info">
+            <% blogs.forEach(blog => { %>
+                <!-- Display blog title and confirmation message -->
+                <p>
+                    <b>
+                        <%= blog.title %>
+                    </b>
+                    are you sure you want to delete it?
+                </p>
+
+                <!-- Form to submit deletion request -->
+                <form action="" method="post">
+                    <!-- Hidden input to pass the blog ID to the server -->
+                    <input type="text" name="blogID" value="<%= blog.blogId %>" hidden>
+                    <!-- Submit button to confirm deletion -->
+                    <button type="submit" class="btn btn-info btn-sm">evet</button>
+                    <!-- Cancel button, redirects back to blog list -->
+                    <a href="/admin/blog-list" class="btn btn-info btn-sm">Vazgec</a>
+                </form>
+            <% }) %>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+<!-- Category Menu as a Bootstrap List Group -->
+<div class="list-group">
+
+    <!-- Loop through categories to create clickable links -->
+    <% categories.forEach(function (element) { %>
+        <a href="/blogs/category/<%= element.name %>" 
+           class="list-group-item <%= selectedCategory == element.name ? "active" : "" %>">
+           <!-- Display category name -->
+           <%= element.name %>
+        </a>
+    <% }) %>
+
+</div>

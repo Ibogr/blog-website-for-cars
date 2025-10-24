@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Include shared head partial (meta tags, CSS, JS links) -->
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+
+    <!-- Include shared navigation bar partial -->
+    <%- include('../partials/nav') %>
+
+    <!-- Loop through names array to display edit forms for each category -->
+    <% names.forEach(name => { %>
+        <div class="container mt-4">
+            <form action="" method="post">
+                <!-- Input field prefilled with category name -->
+                <label for="name">Name</label>
+                <input type="text" name="name" value="<%= name.name %>">
+                
+                <!-- Submit button to update category name -->
+                <button class="btn btn-primary btn-sm" type="submit">Update</button>
+            </form>
+        </div>
+    <% }) %>
+
+</body>
+
+</html>

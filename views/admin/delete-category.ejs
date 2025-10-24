@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Include shared head partial (meta tags, CSS, JS links) -->
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+    <!-- Include shared navigation bar partial -->
+    <%- include('../partials/nav') %>
+
+    <div class="container ms-auto">
+        <!-- Alert box for delete confirmation -->
+        <div class="alert alert-info">
+            <!-- Confirmation message -->
+            <p>
+                <b></b> <!-- You can insert category or blog name here if desired -->
+                are you sure you want to delete it?
+            </p>
+
+            <!-- Form to confirm deletion -->
+            <form action="" method="post">
+                <!-- Hidden input: passes category/blog ID to the server -->
+                <input type="text" name="blogID" value="<%= categoryId %>" hidden>
+
+                <!-- Submit button: confirms deletion -->
+                <button type="submit" class="btn btn-info btn-sm">Yes</button>
+
+                <!-- Cancel button: redirects back to blog list -->
+                <a href="/admin/blog-list" class="btn btn-info btn-sm">Cancel</a>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

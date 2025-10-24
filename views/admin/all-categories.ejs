@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Include the shared head partial (meta tags, CSS links, scripts, etc.) -->
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+    <!-- Include the shared navigation bar partial -->
+    <%- include('../partials/nav') %>
+
+    <div class="container mt-4">
+        <!-- Page title -->
+        <h1>
+            <%= title %>
+        </h1>
+
+        <!-- Alert messages based on the "action" query parameter -->
+        <% if (action != "undefined" && action == "categoryAdd") { %>
+            <div class="alert alert-info">
+                <p class="lead">
+                    Category added
+                </p>
+            </div>
+        <% } %>
+
+        <% if (action != "undefined" && action == "delete") { %>
+            <div class="alert alert-danger">
+                <p class="lead">
+                    Category deleted
+                </p>
+            </div>
+        <% } %>
+
+        <% if (action != "undefined" && action == "updated") { %>
+            <div class="alert alert-secondary">
+                <p class="lead">
+                    Category updated
+                </p>
+            </div>
+        <% } %>
+
+        <!-- Display list of categories if available -->
+        <% if (categories.length > 0) { %>
+            <% categories.forEach(category => { %>
+                <div class="container" style="width: 700px;">
+                    <ul class="list-group mb-2">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <!-- Category name -->
+                            <h5 class="mb-0">
+                                <%= category.name %>
+                            </h5>
+
+                            <!-- Action buttons for each category -->
+                            <div>
+                                <a href="/admin/delete/category/<%= category.categoryId %>"
+                                   class="btn btn-danger btn-sm me-2">Delete</a>
+                                <a href="/admin/edit-category/<%= category.categoryId %>"
+                                   class="btn btn-info btn-sm">Edit</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <!-- Message shown if no categories exist -->
+            <div class="col-12">
+                <p class="text-muted">No blogs found in this category.</p>
+            </div>
+        <% } %>
+
+        <!-- Include pagination partial if available -->
+        <%- include('../partials/pagination') %>
+</div>
+</body>
+
+</html>

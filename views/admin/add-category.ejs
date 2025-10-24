@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Include the shared head partial (meta tags, title, CSS links, etc.) -->
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+
+    <!-- Include the shared navigation bar partial -->
+    <%- include('../partials/nav') %>
+
+    <div class="container mt-4">
+        <!-- Form to add a new category -->
+        <form action="/admin/categoryAdd" method="post">
+            <!-- Input for category name -->
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+
+            <!-- Submit button -->
+            <button class="btn btn-primary btn-sm" type="submit">Add Categories</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

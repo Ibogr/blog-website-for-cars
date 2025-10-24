@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Include shared head partial (meta tags, CSS, JS links) -->
+    <%- include('../partials/head') %>
+</head>
+
+<body>
+    <!-- Include shared navigation bar partial -->
+    <%- include('../partials/nav') %>
+
+    <div class="container mt-4">
+        <!-- Page title -->
+        <h1><%= title %></h1>
+        <h2>Blog-list</h2>
+        <hr>
+        <p>Here you can read the details of a blog post.</p>
+
+        <!-- Alert messages based on action query parameter -->
+        <% if (action != "undefined" && action == "create") { %>
+            <div class="alert alert-info">
+                <p class="lead">Blog created</p>
+            </div>
+        <% } %>
+
+        <% if (action != "undefined" && action == "delete") { %>
+            <div class="alert alert-danger">
+                <p class="lead">Blog deleted</p>
+            </div>
+        <% } %>
+
+        <% if (action != "undefined" && action == "updated") { %>
+            <div class="alert alert-secondary">
+                <p class="lead"><%= blogId %> id'li Blog updated</p>
+            </div>
+        <% } %>
+
+        <div class="container mt-4">
+            <div class="row">
+
+                <!-- LEFT COLUMN: Category Menu -->
+                <div class="col-md-3">
+                    <%- include('../partials/category-menu', { categories, selectedCategory }) %>
+                </div>
+
+                <!-- RIGHT COLUMN: Blog List -->
+                <div class="col-md-9">
+                    <% if (blogs && blogs.length > 0) { %>
+                        <% blogs.forEach(function(blog) { %>
+                            <ul class="list-group mb-2">
+                                <li class="list-group-item d-flex align-items-center justify-content-between">
+
+                                    <!-- LEFT: Image + Blog Info -->
+                                    <div class="d-flex align-items-center" style="gap: 15px;">
+                                        <img src="/<%= blog.image %>" alt="<%= blog.title %>"
+                                             style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+                                        <div>
+                                            <a href="/blogs/<%= blog.blogId %>">
+                                                <h5 class="mb-1"><%= blog.title %></h5>
+                                            </a>
+                                            <p class="mb-0 text-muted"
+                                               style="max-width: 400px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                <%= blog.description %>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- RIGHT: Action Buttons -->
+                                    <div>
+                                        <a href="/admin/blog/delete/<%= blog.blogId %>" class="btn btn-danger btn-sm me-2">Delete</a>
+                                        <a href="/admin/blog/<%= blog.blogId %>" class="btn btn-info btn-sm">Edit</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        <% }) %>
+                    <% } else { %>
+                        <!-- Message when no blogs exist -->
+                        <p class="text-muted">No blog in this category.</p>
+                    <% } %>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+
+        <!-- Include pagination partial -->
+        <%- include('../partials/pagination') %>
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+
+<div class="container">
+    <div class="row">
+        <!-- LEFT COLUMN: Categories Menu -->
+        <div class="col-3">
+            <%- include('../partials/category-menu', { categories, selectedCategory }) %>
+        </div>
+
+        <!-- RIGHT COLUMN: Blog Cards (Dynamic content from server) -->
+        <div class="col-9">
+            <% blogs.forEach(blog => { %>
+                <!-- Include a reusable blog-card partial for each blog -->
+                <%- include('../partials/blog-card', blog) %>
+            <% }) %>
+        </div>
+    </div>
+
+    <!-- Conditional Pagination: Show if more than 2 blogs -->
+    <% if (blogs.length > 2) { %>
+        <%- include('../partials/pagination.ejs') %>
+    <% } %>
+
+    <!-- Note: 'images' folder is already served statically,
+         so you can reference images directly without '../images' in src -->
+</div>
+
+</body>
+</html>
+
+<!-- Developer Notes:
+1. Blog cards are dynamically generated based on server data.
+2. You plan to add conditional rendering based on car type (classic, sports, etc.) once list page is fully dynamic.
+-->
